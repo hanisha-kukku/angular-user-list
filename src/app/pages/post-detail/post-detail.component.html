@@ -1,0 +1,27 @@
+<div class="header">
+  <button class="btn" (click)="goHome()">🏠 Home</button>
+  <button class="btn secondary" (click)="goBackToPosts()">🔙 Back to User's Posts</button>
+</div>
+
+<div class="post-detail-container">
+  <div *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+    <div *ngIf="!isLoading">
+      <h2>{{ post?.title }}</h2>
+      <p class="post-body">{{ post?.body }}</p>
+      <div class="author-info" *ngIf="author">
+        <h4>Author</h4>
+        <p><strong>{{ author.name }}</strong> ({{ author.username }})</p>
+        <p>Email: {{ author.email }}</p>
+      </div>
+      <div class="comments-section">
+        <h3>Comments ({{ comments.length }})</h3>
+        <div class="comment-card" *ngFor="let comment of comments">
+          <h4>{{ comment.name }}</h4>
+          <p><strong>{{ comment.email }}</strong></p>
+          <p>{{ comment.body }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
